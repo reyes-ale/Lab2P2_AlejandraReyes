@@ -63,6 +63,11 @@ public class Libro {
         this.dispo = dispo;
     }
 
+    @Override
+    public String toString() {
+        return "Libro{" + "titulo=" + titulo + ", autor=" + autor + ", genero=" + genero + ", anio=" + anio + ", dispo=" + dispo + '}';
+    }
+
     
     
     

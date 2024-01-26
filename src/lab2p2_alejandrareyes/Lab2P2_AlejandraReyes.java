@@ -23,26 +23,48 @@ public class Lab2P2_AlejandraReyes {
         usuarios.add(new Usuario("josereyes", "huevo", "bibliotecario"));
         
         System.out.println("* * * Inicio de Sesion * * *");
-        System.out.print("Ingrese su nombre de usuario:");
+        System.out.print("Ingrese su nombre de usuario: ");
         String nombre = leerS.nextLine();
         System.out.print("Ingrese contraseña: ");
         String contra = leerS.nextLine();
-        System.out.print("Ingrese tipo de usuario [estudiante, maestro, bibliotecario] : ");
+        System.out.print("Ingrese tipo de usuario [estudiante, maestro, bibliotecario]: ");
         String tipousuario = leerS.nextLine();
+        System.out.println(usuariocorrecto(nombre,contra,tipousuario));
         
+        while (usuariocorrecto(nombre,contra,tipousuario)==false){
+            if (estaensistema(nombre)==false){
+                System.out.println("Este usuario no esta en la base.");
+                System.out.print("Ingrese su nombre de usuario nuevamente: ");
+                nombre = leerS.nextLine();
+                System.out.print("Ingrese contraseña: ");
+                contra = leerS.nextLine();
+                System.out.print("Ingrese tipo de usuario [estudiante, maestro, bibliotecario]: ");
+                tipousuario = leerS.nextLine();
+            }
+            else if (!((contra.equalsIgnoreCase(usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getContra())))){
+                System.out.println("Su contraseña es incorrecta");
+                System.out.print("Ingrese su nombre de usuario nuevamente: ");
+                nombre = leerS.nextLine();
+               System.out.print("Ingrese contraseña: ");
+                contra = leerS.nextLine();
+               System.out.print("Ingrese tipo de usuario [estudiante, maestro, bibliotecario]: ");
+                tipousuario = leerS.nextLine();
         
-        while (estaensistema(nombre)==false){
-            System.out.println("Este usuario no esta en la base.");
-            System.out.print("Ingrese su nombre de usuario nuevamente:");
-             nombre = leerS.nextLine();
-            System.out.print("Ingrese contraseña: ");
-             contra = leerS.nextLine();
-            System.out.print("Ingrese tipo de usuario [estudiante, maestro, bibliotecario] : ");
-             tipousuario = leerS.nextLine();
+            }
+            else if  (!((tipousuario.equalsIgnoreCase(usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getTipousuario())))){
+                    System.out.println("Su tipo de usuario es incorrecto");
+                System.out.print("Ingrese su nombre de usuario nuevamente: ");
+                nombre = leerS.nextLine();
+               System.out.print("Ingrese contraseña: ");
+                contra = leerS.nextLine();
+               System.out.print("Ingrese tipo de usuario [estudiante, maestro, bibliotecario]: ");
+                tipousuario = leerS.nextLine();
         
+            }
         }
         
-        System.out.println(" * * * * * M E N U * * * * * ");
+        
+            System.out.println(" * * * * * M E N U * * * * * ");
         System.out.print("1. Listar recursos \n 2. Crear recurso \n 3. Eliminar recurso \n 4. Modificar recurso \n "
                 + "5. Salir \n Ingrese una opcion: ");
         
@@ -52,12 +74,20 @@ public class Lab2P2_AlejandraReyes {
         while (opcion>0 && opcion <5){
             switch (opcion){
                 case 1://listar
-                    
+                    int i =0;
+                    for (Object t : biblioteca) {
+                        System.out.println(biblioteca.get(i));
+                        i++;
+                   }
+               
+                    imprimirbiblio(biblioteca);
+               
                     break;
                     
                 case 2://crear
                     if ((usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getTipousuario()).equalsIgnoreCase("estudiante")){
                         System.out.println("Usted no tiene acceso a esta opcion.");
+                        break;
                     }
                     else{
                         System.out.println("* * * Recursos * * *");
@@ -144,16 +174,26 @@ public class Lab2P2_AlejandraReyes {
                     break;
                     
                 case 3://eliminar
-                    if (tipousuario.equalsIgnoreCase("estudiante")){
+                    if ((usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getTipousuario()).equalsIgnoreCase("estudiante") || 
+                            (usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getTipousuario()).equalsIgnoreCase("profesor")){
                         System.out.println("Usted no tiene acceso a esta opcion.");
+                        break;
                     }
+                   
                     else{
                         
                     }
                     break;
                     
                 case 4://modificar
-                    
+                    if ((usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getTipousuario()).equalsIgnoreCase("estudiante") || 
+                            (usuarios.get(estaensistemapos(nombre,contra,tipousuario)).getTipousuario()).equalsIgnoreCase("profesor")){
+                        System.out.println("Usted no tiene acceso a esta opcion.");
+                        break;
+                    }
+                    else{
+                        
+                    }
                     
                     break; 
             }
@@ -164,6 +204,9 @@ public class Lab2P2_AlejandraReyes {
         
             opcion = leer.nextInt();
         }
+        
+        
+        
         
         
         
@@ -192,15 +235,22 @@ public class Lab2P2_AlejandraReyes {
   
     public static boolean usuariocorrecto (String nombre, String contra, String tipou){
         for (int i = 0; i < usuarios.size(); i++) {
-            if (nombre.equals(usuarios.get(i).getNombre())){
-                if(contra.equals(usuarios.get(i).getContra())){
-                    if (tipou.equals(usuarios.get(i)).getTipousuario());{
+            if (nombre.equalsIgnoreCase(usuarios.get(i).getNombre())){
+                if(contra.equalsIgnoreCase(usuarios.get(i).getContra())){
+                    if ((tipou.equalsIgnoreCase(usuarios.get(i).getTipousuario()))){
                         return true;
                     }
                 }
             }
         }
         return false;
+    }
+    
+    public static void imprimirbiblio (ArrayList lista){
+        for(int i=0; i<lista.size(); i++){
+            Object temp = lista.get(i);
+            System.out.println((i) + ". "+ temp.toString());
+        }   
     }
     
 }
