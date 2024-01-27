@@ -65,7 +65,7 @@ public class Conferencia {
 
     @Override
     public String toString() {
-         return "Conferencia {" + "titulo : " + titulo + " | conferencista :" + conferencista + " | fecha : " + fecha + " | duracion : " + duracion + " | enlace : " + enlace + '}';
+         return "Conferencia {" + "titulo: " + titulo + " | conferencista:" + conferencista + " | fecha: " + fecha + " | duracion: " + duracion + " | enlace: " + enlace + '}';
     }
     
     

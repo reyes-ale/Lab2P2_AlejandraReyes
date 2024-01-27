@@ -55,7 +55,7 @@ public class Cursoenlinea {
 
     @Override
     public String toString() {
-         return "Curso en linea { " + "titulo : " + titulo + " | instructor :" + instructor + " | duracion : " + duracion + " | plataforma : " + plataforma + '}';
+         return "Curso en linea { " + "titulo: " + titulo + " | instructor:" + instructor + " | duracion: " + duracion + " | plataforma: " + plataforma + '}';
     }
     
     

@@ -15,6 +15,7 @@ public class Lab2P2_AlejandraReyes {
      */
     public static void main(String[] args) {
         Scanner leer = new Scanner (System.in);
+        
         Scanner leerS = new Scanner (System.in);
         ArrayList biblioteca = new ArrayList();
        
@@ -47,18 +48,18 @@ public class Lab2P2_AlejandraReyes {
             }
         }
         
-        
+        System.out.println();
         System.out.println(" * * * * * M E N U * * * * * ");
         System.out.print("1. Listar recursos \n 2. Crear recurso \n 3. Eliminar recurso \n 4. Modificar recurso \n "
                     + "5. Salir \n Ingrese una opcion: ");
         
         int opcion = leer.nextInt();
-        
+        System.out.println(opcion);
         
          int tipou = 0;
         
         
-        while (opcion>0 && opcion <5){
+        while (opcion!=5){
             switch (opcion){
                 case 1://listar
                     imprimirbiblio(biblioteca);
@@ -78,11 +79,12 @@ public class Lab2P2_AlejandraReyes {
                     }
                 
                     if (tipou==1 || tipou==2){
-                        System.out.println("* * * Recursos * * *");
+                        System.out.println();
+                        System.out.println("* * * Creacion de recursos * * *");
                         System.out.println("1. Libros \n 2. Articulos \n 3. Cursos en linea \n 4. Conferencias virtuales \n 5. Salir del submenu Seleccione el tipo de recurso a agregar: ");
                         int recurso = leer.nextInt();
                         
-                        while(recurso>0 && recurso<5){
+                        while(recurso!=5){
                             switch (recurso){
                                 case 1://libro
                                     System.out.print("Ingrese el titulo del libro: ");
@@ -93,7 +95,7 @@ public class Lab2P2_AlejandraReyes {
                                     String genero = leerS.nextLine();
                                     System.out.print("Ingrese el año de publicacion del libro: ");
                                     String anio = leerS.nextLine();
-                                    System.out.println("Ingrese disponibilidad [si,no]: ");
+                                    System.out.print("Ingrese disponibilidad [si,no]: ");
                                     String disp = leerS.nextLine();
                                     
                                     boolean dispo = false;
@@ -109,7 +111,7 @@ public class Lab2P2_AlejandraReyes {
                                     break;
 
                                 case 2: //articulo
-                                    System.out.print("Ingrese el 1titulo del articulo: ");
+                                    System.out.print("Ingrese el titulo del articulo: ");
                                     String titulo2 = leerS.nextLine();
                                     System.out.print("Ingrese el autor del articulo: ");
                                     String autor2 = leerS.nextLine();
@@ -117,7 +119,7 @@ public class Lab2P2_AlejandraReyes {
                                     String tema = leerS.nextLine();
                                     System.out.print("Ingrese la fecha de publicacion del articulo [mm/dd/yyyy]: ");
                                     String fecha = leerS.nextLine();
-                                    System.out.println("Ingrese si el articulo tiene acceso en linea [si,no]: ");
+                                    System.out.print("Ingrese si el articulo tiene acceso en linea [si,no]: ");
                                     String acceso = leerS.nextLine();
                                     boolean acc = false;
                                     if (acceso.equalsIgnoreCase("si")){
@@ -161,8 +163,9 @@ public class Lab2P2_AlejandraReyes {
 
 
                             }
-                            System.out.println("* * * Recursos * * *");
-                            System.out.println("1. Libros \n 2. Articulos \n 3. Cursos en linea \n 4. Conferencias virtuales \n 5. Salir del submenu Seleccione el tipo de recurso a agregar: ");
+                            System.out.println();
+                            System.out.println("* * * Creacion de recursos * * *");
+                            System.out.println("1. Libros \n 2. Articulos \n 3. Cursos en linea \n 4. Conferencias virtuales \n 5. Salir del submenu \n Ingrese una opcion: ");
                             recurso = leer.nextInt();
                         }
                         
@@ -170,7 +173,7 @@ public class Lab2P2_AlejandraReyes {
                     else{
                         System.out.println("Usted no tiene acceso a esta opcion");
                     }
-                    break;
+                break;
                     
                 case 3://eliminar
                     System.out.print("Seleccione la posicion del recurso a eliminar: ");
@@ -183,14 +186,16 @@ public class Lab2P2_AlejandraReyes {
                         break;
                     }
                     
-                    break; 
+                 
+                System.out.println();
+                System.out.println(" * * * * * M E N U * * * * * ");
+                System.out.println("1. Listar recursos \n 2. Crear recurso \n 3. Eliminar recurso \n 4. Modificar recurso \n "
+                    + "5. Salir \n Ingrese una opcion: ");
+
+            opcion = leer.nextInt();
             }
             
-            System.out.println(" * * * * * M E N U * * * * * ");
-            System.out.println("1. Listar recursos \n 2. Crear recurso \n 3. Eliminar recurso \n 4. Modificar recurso \n "
-                + "5. Salir \n Ingrese una opcion: ");
-        
-            opcion = leer.nextInt();
+           
         }
         
         
@@ -233,21 +238,7 @@ public class Lab2P2_AlejandraReyes {
    public static void imprimirbiblio (ArrayList lista){
         for(int i=0; i<lista.size(); i++){
             Object recurso = lista.get(i);
-            if (recurso instanceof Libro){
             System.out.println((i) + ". "+ recurso.toString());
-            }
-            else if (recurso instanceof Articulo){
-            System.out.println((i) + ". "+ recurso.toString());
-            }
-            else if (recurso instanceof Cursoenlinea){
-            System.out.println((i) + ". "+ recurso.toString());
-            }
-            else if (recurso instanceof Conferencia){
-            System.out.println((i) + ". "+ recurso.toString());
-            }
-            else if (recurso instanceof Libro){
-            System.out.println((i) + ". "+ recurso.toString());
-            }
         }   
     }
    
