@@ -71,8 +71,8 @@ public class Lab2P2_AlejandraReyes {
                 case 2://crear\
                     for (Usuario usuario : usuarios) {
                         if (usuario.getNombre().equalsIgnoreCase(nombre)) {
-                            String tipoUsuario = usuario.getTipousuario();
-                            switch (tipoUsuario.toLowerCase()) {
+                            String tipous = usuario.getTipousuario();
+                            switch (tipous.toLowerCase()) {
                                 case "estudiante":
                                     tipou = 0;
                                     break;
@@ -86,8 +86,6 @@ public class Lab2P2_AlejandraReyes {
                             break; 
                         }
                     }
-                    
-                    System.out.println(tipou);
                 
                     if (tipou==1 || tipou==2){
                         System.out.println();
@@ -188,8 +186,15 @@ public class Lab2P2_AlejandraReyes {
                     
                 case 3://eliminar
                     if (tipou==2){
+                        imprimirbiblio(biblioteca);  
+                        System.out.println();
                         System.out.print("Seleccione la posicion del recurso a eliminar: ");
                         int pos = leer.nextInt();
+                        while (pos<0 ||  pos>biblioteca.size()-1){
+                            System.out.println("posicion fuera de rango");
+                            System.out.print("Ingrese la posicion de el recurso a modificar:");
+                            pos = leer.nextInt();
+                        } 
                         biblioteca.remove(pos);
                     } 
                     else {
@@ -201,11 +206,17 @@ public class Lab2P2_AlejandraReyes {
                 case 4://modificar
                     if (tipou==2){
                         imprimirbiblio(biblioteca);  
+                        System.out.println();
                     
-                        System.out.println("Ingrese la posicion de el recurso a modificar:");
+                        System.out.print("Ingrese la posicion de el recurso a modificar:");
                         int poscambio = leer.nextInt();
-
-
+                        
+                        while (poscambio<0 ||  poscambio>biblioteca.size()-1){
+                            System.out.println("posicion fuera de rango");
+                            System.out.print("Ingrese la posicion de el recurso a modificar:");
+                            poscambio = leer.nextInt();
+                        }
+                        
                         if (biblioteca.get(poscambio) instanceof Libro){
                             System.out.print("Ingrese el titulo del libro: ");
                             String titulo1 = leerS.nextLine();
